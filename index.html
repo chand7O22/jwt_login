@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>frontend</title>
+  </head>
+
+  <body>
+    <div id="signup_div">
+      <h3>Signup</h3>
+      <input id="signup_username" type="text" placeholder="username">
+      <input id="signup_password" type="password" placeholder="password">
+      <button onclick="signup()">signup</button>
+    </div>
+
+    <div id="signin_div">
+      <h3>Signin</h3>
+      <input id="signin_username" type="text" placeholder="username">
+      <input id="signin_password" type="password" placeholder="password">
+      <button onclick="signin()">signin</button>
+    </div>
+
+    <div id="user_div">
+      <h3>User info</h3>
+      <p id="user_info"></p>
+    </div>
+
+    <div id="logout">
+      <button onclick="log_out()">logout</button>
+    </div> 
+  </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
+
+  <script>
+    async function signup(){
+      const username=document.getElementById("signup_username").value
+
+      const password=document.getElementById("signup_password").value
+
+      const response=await axios.post("http://localhost:3000/signup",{
+        username:username,
+        password:password
+      })
+
+      alert("Signup successfull !")
+
+    }
+
+    async function signin(){
+      const username=document.getElementById("signin_username").value
+
+      const password=document.getElementById("signin_password").value
+
+      const response=await axios.post("http://localhost:3000/signin",{
+        username:username,
+        password:password
+      })
+
+      if(response.data.token!=undefined){
+        localStorage.setItem("token",response.data.token)
+        alert("Signin successfull !")
+      }
+      else{
+        alert("incorrect username or password")
+      }
+
+      window.location.reload();
+    }
+
+    async function get_info(){
+      const Token=localStorage.getItem("token")
+      if(Token){
+        const res=await axios.get("http://localhost:3000/me",{
+        headers:{
+          token: Token
+        }
+      })
+
+      const signupDiv=document.getElementById("signup_div")
+      signupDiv.style.display="none"
+
+      const signinDiv=document.getElementById("signin_div")
+      signinDiv.style.display="none"
+
+      const logOut=document.getElementById("logout")
+      logOut.style.display="block"
+
+      const userInfoDiv=document.getElementById("user_div")
+      userInfoDiv.style.display="block"
+
+      document.getElementById("user_info").innerHTML="username: "+ res.data.username+ ", passowrd: "+res.data.password
+      }
+
+
+      else{
+        const signupDiv=document.getElementById("signup_div")
+        signupDiv.style.display="block"
+
+        const signinDiv=document.getElementById("signin_div")
+        signinDiv.style.display="block"
+
+        const userInfoDiv=document.getElementById("user_div")
+        userInfoDiv.style.display="none"
+
+        const logOut=document.getElementById("logout")
+        logOut.style.display="none"
+      }
+
+    }
+
+    function log_out(){
+      localStorage.removeItem("token")
+      window.location.reload();
+    }
+
+    get_info()
+  </script>
+</html>
