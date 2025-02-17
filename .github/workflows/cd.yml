@@ -21,8 +21,8 @@ jobs:
       
       - name: pull the code
         run: |
-          cd jwt/
-          git pull https://github.com/chand7O22/jwt_login.git
+          ssh -t "cd jwt/ &&
+          git pull https://github.com/chand7O22/jwt_login.git"
       
       - name: restart the process
         run: |
