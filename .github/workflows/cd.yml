@@ -16,7 +16,7 @@ jobs:
       - name: ssh into ec2
         run: |
           echo "${{secrets.SSH_KEY}}" &> ~/ssh_key
-          ssh -i ssh_key ubuntu@13.201.18.204
+          ssh -i -o StrictHostKeyChecking=nos ssh_key ubuntu@13.201.18.204
       
       - name: pull the code
         run: |
