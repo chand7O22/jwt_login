@@ -15,9 +15,8 @@ jobs:
     steps:
       - name: ssh into ec2
         run: |
-          echo "${{secrets.SSH_PRIVATE_KEY}}" &> ~/ssh_key
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
           chmod 600 ~/ssh_key
-          cat ~/ssh_key
           ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.201.18.204
       
       - name: pull the code
