@@ -37,7 +37,7 @@
 
       const password=document.getElementById("signup_password").value
 
-      const response=await axios.post("http://localhost:3000/signup",{
+      const response=await axios.post("http://13.233.145.229:3000/signup",{
         username:username,
         password:password
       })
@@ -51,7 +51,7 @@
 
       const password=document.getElementById("signin_password").value
 
-      const response=await axios.post("http://localhost:3000/signin",{
+      const response=await axios.post("http://13.233.145.229:3000/signin",{
         username:username,
         password:password
       })
@@ -70,7 +70,7 @@
     async function get_info(){
       const Token=localStorage.getItem("token")
       if(Token){
-        const res=await axios.get("http://localhost:3000/me",{
+        const res=await axios.get("http://13.233.145.229:3000/me",{
         headers:{
           token: Token
         }

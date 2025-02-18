@@ -17,4 +17,4 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
           chmod 600 ~/ssh_key
-          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.201.18.204 -t "cd jwt/ && git pull origin master && pm2 restart jwt"
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.233.145.229 -t "cd /home/ubuntu/jwt/login_jwt/jwt_login && git pull origin master && pm2 restart jwt"
