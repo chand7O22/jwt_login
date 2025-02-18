@@ -4,19 +4,25 @@
     <title>frontend</title>
   </head>
 
+  <style>
+    .hover:hover{
+      cursor: pointer;
+    }
+  </style>
+
   <body>
     <div id="signup_div">
       <h3>Signup</h3>
       <input id="signup_username" type="text" placeholder="username">
       <input id="signup_password" type="password" placeholder="password">
-      <button onclick="signup()">signup</button>
+      <button id="hover" onclick="signup()">signup</button>
     </div>
 
     <div id="signin_div">
       <h3>Signin</h3>
       <input id="signin_username" type="text" placeholder="username">
       <input id="signin_password" type="password" placeholder="password">
-      <button onclick="signin()">signin</button>
+      <button id="hover" onclick="signin()">signin</button>
     </div>
 
     <div id="user_div">
@@ -25,7 +31,7 @@
     </div>
 
     <div id="logout">
-      <button onclick="log_out()">logout</button>
+      <button id="hover" onclick="log_out()">logout</button>
     </div> 
   </body>
 
