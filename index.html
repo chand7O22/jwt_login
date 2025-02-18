@@ -37,13 +37,18 @@
 
       const password=document.getElementById("signup_password").value
 
-      const response=await axios.post("http://13.233.145.229:3000/signup",{
+      if(username!="" && password!=""){
+        const response=await axios.post("http://13.233.145.229:3000/signup",{
         username:username,
         password:password
-      })
+        })
 
-      alert("Signup successfull !")
+        alert("Signup successfull !")
+      }
 
+      else{
+        alert("username or password cannot be empty")
+      }
     }
 
     async function signin(){
