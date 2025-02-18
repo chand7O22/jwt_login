@@ -1,2 +1,2 @@
 # jwt_login
-only backend server to login to user account using jwt's
+This project logs in the user into their account using jwt's
